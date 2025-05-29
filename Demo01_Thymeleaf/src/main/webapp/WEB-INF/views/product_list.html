@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- insert: div + section (bên HEADER) -->
+    <div th:insert="CommonFragment::HEADER" style="color: red;">
+
+    </div>
+    <!-- replace: section (bên FOOTER) hiển thị -->
+    <div th:replace="CommonFragment::FOOTER" style="color: red;">
+
+    </div>
+    <!-- include: div (layout cha) hiển thị -->
+    <div th:include="CommonFragment::CONTENT" style="color: red;">
+
+    </div>
+
+    <h4>List Product</h4>
+    <a href="/product-add" class="btn btn-primary btn-sm">Add</a>
+<!--    <div>-->
+<!--        Full Name: <span th:text="${fullName}"></span>-->
+<!--    </div>-->
+
+<!--    <input type="text" th:value="${address}">-->
+<!--    <br>-->
+<!--    <input type="text" value="HP">-->
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Product Name</td>
+                <td>Price</td>
+                <td>Hight Price</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="obj, loop : ${products}">
+                <td th:text="${obj.id}">Id</td>
+                <td th:text="${obj.productName}">Product Name</td>
+                <td th:text="${obj.price}">Price</td>
+                <td th:if="${obj.price > 1500}" th:text="${'Hight'}">Hight Price</td>
+<!--                <td th:unless="${obj.price > 1500}" th:text="${'Low'}">Low Price</td>-->
+                <td th:if="${obj.price <= 1500}" th:text="${'Low Hight'}">Low Price</td>
+                <td><a th:href="${'/product-delete/' + obj.id}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
