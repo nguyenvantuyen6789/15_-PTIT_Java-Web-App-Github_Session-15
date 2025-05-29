@@ -50,7 +50,7 @@ public class ProductController {
 
         model.addAttribute("products", productDTOS);
 
-        return "product_list";
+        return "product/product_list2";
     }
 
     @GetMapping("product-add")
